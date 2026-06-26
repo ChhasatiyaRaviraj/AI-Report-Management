@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Performance Reporting | Executive Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- 1. Header -->
+        <header class="header">
+            <div class="header-left">
+                <div class="logo">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="4" fill="#2563EB"/>
+                        <path d="M7 12L12 7L17 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 17V7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>CorpAnalytics</span>
+                </div>
+                <div class="divider"></div>
+                <h1 class="header-title">Report Generator</h1>
+            </div>
+            <div class="header-right">
+                <div class="dropdown">
+                    <button class="btn btn-outline">
+                        Report History
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                </div>
+                <button class="btn btn-outline">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Export
+                </button>
+                <div class="user-profile">
+                    <div class="avatar">JD</div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- 2. Report Creation Panel -->
+            <section class="panel report-creation-panel">
+                <div class="panel-row">
+                    <div class="form-group">
+                        <label>Date Range</label>
+                        <select class="form-control">
+                            <option>Q3 2023 (Jul 1 - Sep 30)</option>
+                            <option>Q2 2023 (Apr 1 - Jun 30)</option>
+                            <option>YTD 2023</option>
+                            <option>Last 30 Days</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Compare to</label>
+                        <div class="toggle-group">
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                            <span class="toggle-label">Previous Period</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Business Unit</label>
+                        <select class="form-control">
+                            <option>Global (All Units)</option>
+                            <option>North America</option>
+                            <option>EMEA</option>
+                            <option>APAC</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button id="generateBtn" class="btn btn-primary"><span class="btn-text">Generate Report</span></button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. KPI Overview Row -->
+            <section class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <h3>Revenue</h3>
+                        <div class="kpi-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        </div>
+                    </div>
+                    <div class="kpi-value">$89,691</div>
+                    <div class="kpi-footer">
+                        <span class="trend positive">↑ 12.4%</span>
+                        <span class="trend-context">vs previous period</span>
+                    </div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <h3>Orders</h3>
+                        <div class="kpi-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                        </div>
+                    </div>
+                    <div class="kpi-value">1,245</div>
+                    <div class="kpi-footer">
+                        <span class="trend positive">↑ 8.2%</span>
+                        <span class="trend-context">vs previous period</span>
+                    </div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <h3>Return Rate</h3>
+                        <div class="kpi-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+                        </div>
+                    </div>
+                    <div class="kpi-value">2.4%</div>
+                    <div class="kpi-footer">
+                        <span class="trend positive">↓ 0.5%</span>
+                        <span class="trend-context">vs previous period</span>
+                    </div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <h3>Products Sold</h3>
+                        <div class="kpi-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                        </div>
+                    </div>
+                    <div class="kpi-value">4,892</div>
+                    <div class="kpi-footer">
+                        <span class="trend positive">↑ 15.1%</span>
+                        <span class="trend-context">vs previous period</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. Revenue Trend Chart -->
+            <section class="panel chart-panel">
+                <div class="panel-header">
+                    <h2>Revenue Trend</h2>
+                    <div class="chart-actions">
+                        <button class="btn btn-small active">Day</button>
+                        <button class="btn btn-small">Week</button>
+                        <button class="btn btn-small">Month</button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="revenueChart"></canvas>
+                </div>
+            </section>
+
+            <!-- 5. Performance Breakdown -->
+            <section class="breakdown-grid">
+                <div class="panel">
+                    <div class="panel-header">
+                        <h2>Revenue by Category</h2>
+                    </div>
+                    <div class="chart-container donut-chart">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-header">
+                        <h2>Orders by Category</h2>
+                    </div>
+                    <div class="chart-container bar-chart">
+                        <canvas id="ordersChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <div class="bottom-grid">
+                <!-- 6. Top Products Table -->
+                <section class="panel table-panel">
+                    <div class="panel-header">
+                        <h2>Top Products</h2>
+                        <button class="btn btn-outline btn-small">View All</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th class="text-right">Revenue</th>
+                                    <th class="text-right">Orders</th>
+                                    <th class="text-right">Return Rate</th>
+                                    <th class="text-right">Growth</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="product-cell">
+                                            <div class="product-icon">E</div>
+                                            <span class="product-name">Enterprise License</span>
+                                        </div>
+                                    </td>
+                                    <td class="text-right font-medium">$45,200</td>
+                                    <td class="text-right">84</td>
+                                    <td class="text-right text-success">1.2%</td>
+                                    <td class="text-right text-success">+24%</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="product-cell">
+                                            <div class="product-icon">P</div>
+                                            <span class="product-name">Pro Subscription</span>
+                                        </div>
+                                    </td>
+                                    <td class="text-right font-medium">$28,450</td>
+                                    <td class="text-right">569</td>
+                                    <td class="text-right text-warning">3.4%</td>
+                                    <td class="text-right text-success">+12%</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="product-cell">
+                                            <div class="product-icon">A</div>
+                                            <span class="product-name">API Add-on</span>
+                                        </div>
+                                    </td>
+                                    <td class="text-right font-medium">$12,800</td>
+                                    <td class="text-right">245</td>
+                                    <td class="text-right text-success">0.8%</td>
+                                    <td class="text-right text-success">+45%</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="product-cell">
+                                            <div class="product-icon">C</div>
+                                            <span class="product-name">Custom Implementation</span>
+                                        </div>
+                                    </td>
+                                    <td class="text-right font-medium">$8,500</td>
+                                    <td class="text-right">12</td>
+                                    <td class="text-right text-success">0.0%</td>
+                                    <td class="text-right text-danger">-5%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <div class="side-column">
+                    <!-- 7. Executive Summary -->
+                    <section class="panel insights-panel">
+                        <div class="panel-header">
+                            <h2>Business Insights</h2>
+                            <span class="badge">Auto-generated</span>
+                        </div>
+                        <div class="insights-content">
+                            <div class="insight-block">
+                                <h4>Key Achievements</h4>
+                                <p>Enterprise License revenue grew by 24% this period, driven by successful renewals in the North America region.</p>
+                            </div>
+                            <div class="insight-block">
+                                <h4>Risks</h4>
+                                <p>Pro Subscription return rates have increased to 3.4%. Investigation into onboarding friction is recommended.</p>
+                            </div>
+                            <div class="insight-block">
+                                <h4>Opportunities</h4>
+                                <p>API Add-on adoption shows strong momentum (+45%). Consider bundling this with Pro Subscriptions.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 8. Report Output Preview -->
+                    <section class="panel preview-panel">
+                        <div class="panel-header">
+                            <h2>Report Output</h2>
+                        </div>
+                        <div class="pdf-preview">
+                            <div class="pdf-page cover">
+                                <div class="pdf-skeleton title"></div>
+                                <div class="pdf-skeleton line"></div>
+                                <div class="pdf-skeleton logo"></div>
+                            </div>
+                            <div class="pdf-page content">
+                                <div class="pdf-skeleton header"></div>
+                                <div class="pdf-skeleton chart"></div>
+                                <div class="pdf-skeleton text-block"></div>
+                            </div>
+                        </div>
+                        <button id="downloadBtn" class="btn btn-primary full-width"><span class="btn-text">Download PDF Report</span></button>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
